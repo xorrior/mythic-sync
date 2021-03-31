@@ -129,7 +129,7 @@ async def handle_response(token, data):
 
 async def scripting():
     mythic = mythic_rest.Mythic(username=MYTHIC_USERNAME, password=MYTHIC_PASSWORD,
-                    server_ip=MYTHIC_IP, server_port="7443", ssl=True, global_timeout=-1)
+                    server_ip=MYTHIC_IP, server_port="7443", ssl=False, global_timeout=-1)
 
     await mythic.login()
     resp = await mythic.set_or_create_apitoken()
