@@ -3440,7 +3440,7 @@ class Mythic:
         headers = self.get_headers()
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                async with session.get(url, headers=headers, ssl=False) as resp:
+                async with session.get(url, headers=headers, ssl=self._ssl) as resp:
                     return MythicResponse(
                         response_code=resp.status, raw_response=await resp.json()
                     )
@@ -3459,7 +3459,7 @@ class Mythic:
         headers = self.get_headers()
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                async with session.get(url, headers=headers, ssl=False) as resp:
+                async with session.get(url, headers=headers, ssl=self._ssl) as resp:
                     data = await resp.read()
                     return data
                     # return (resp.status, await resp.json())
@@ -3475,7 +3475,7 @@ class Mythic:
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
                 async with session.put(
-                    url, json=data, headers=headers, ssl=False
+                    url, json=data, headers=headers, ssl=self._ssl
                 ) as resp:
                     return MythicResponse(
                         response_code=resp.status, raw_response=await resp.json()
@@ -3496,7 +3496,7 @@ class Mythic:
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
                 async with session.post(
-                    url, json=data, headers=headers, ssl=False
+                    url, json=data, headers=headers, ssl=self._ssl
                 ) as resp:
                     return MythicResponse(
                         response_code=resp.status, raw_response=await resp.json()
@@ -3516,7 +3516,7 @@ class Mythic:
         headers = self.get_headers()
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                async with session.delete(url, headers=headers, ssl=False) as resp:
+                async with session.delete(url, headers=headers, ssl=self._ssl) as resp:
                     return MythicResponse(
                         response_code=resp.status, raw_response=await resp.json()
                     )
@@ -3586,7 +3586,7 @@ class Mythic:
             timeout = self.global_timeout
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                ws = await session.ws_connect(url, headers=headers, ssl=False)
+                ws = await session.ws_connect(url, headers=headers, ssl=self._ssl)
                 start = time()
                 while True:
                     try:
@@ -4241,7 +4241,7 @@ class Mythic:
             try:
                 async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
                     async with session.post(
-                        url, json=data, headers=headers, ssl=False
+                        url, json=data, headers=headers, ssl=self._ssl
                     ) as resp:
                         resp = MythicResponse(
                             response_code=resp.status, raw_response=await resp.json()
@@ -4267,7 +4267,7 @@ class Mythic:
             try:
                 async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
                     async with session.post(
-                        url, data=form, headers=headers, ssl=False
+                        url, data=form, headers=headers, ssl=self._ssl
                     ) as resp:
                         resp = MythicResponse(
                             response_code=resp.status, raw_response=await resp.json()
@@ -4608,7 +4608,7 @@ class Mythic:
         headers = self.get_headers()
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                ws = await session.ws_connect(url, headers=headers, ssl=False)
+                ws = await session.ws_connect(url, headers=headers, ssl=self._ssl)
                 start = time()
                 while True:
                     try:
@@ -4648,7 +4648,7 @@ class Mythic:
         headers = self.get_headers()
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                ws = await session.ws_connect(url, headers=headers, ssl=False)
+                ws = await session.ws_connect(url, headers=headers, ssl=self._ssl)
                 start = time()
                 while True:
                     try:
@@ -4747,7 +4747,7 @@ class Mythic:
         print("waiting to gather responses for task")
         try:
             async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-                ws = await session.ws_connect(url, headers=headers, ssl=False)
+                ws = await session.ws_connect(url, headers=headers, ssl=self._ssl)
                 start = time()
                 while True:
                     try:
